@@ -66,23 +66,6 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 
-/*
-  ・contents-mainのimgが、自動で、contents-sub-itemの内容に入れ替わる
-  ・contents-mainのimgタグのsrc属性を、クリックしたcontents-sub-itemのimgタグのsrc属性で書き換える
-*/
-
-$('.contents-sub-item').children('img').click(function() {
-  changeImg(this);
-});
-
-
-function changeImg(elm) {
-  var src = $(elms).attr('src');
-
-  $('.contents-main').children('img').attr('src',src);
-}
-
-
 </script>
 </body>
 </html>

@@ -120,54 +120,6 @@
 <script>
 
 
-// 必要な値を変数に格納
-var $nav = $('.contents-nav');
-var pos = $nav.offset().top;
-
-// イベント
-$(window).scroll(function() {
-  navFixed();
-});
-
-$('a[href^="#"]').on('click',function(e) {
-  e.preventDefault();
-  scr(this);
-});
-
-
-// 処理
-function navFixed() {
-  var winPos = $(window).scrollTop();
-
-  if(winPos > pos) {
-    $nav.addClass('fixed');
-    // ページトップボタンの表示
-    $('.pagetop').fadeIn();
-  } else {
-    $nav.removeClass('fixed');
-    // ページトップボタンの非表示
-    $('.pagetop').fadeOut();
-  }
-}
-
-
-/*
-  ・aタグをクリックしたら、body,htmlが、クリックしたaタグのhref属性まで、アニメーションして戻る
-
-  ・クリックしたaタグのhref属性
-*/
-
-function scr(elm) {
-  var href = $(elm).attr('href');
-
-  if(href === '#') {
-    $('body,html').animate({scrollTop : 0},400);
-  } else {
-    var position = $(href).offset().top;  
-    $('body,html').animate({scrollTop : position},400);
-  }
-}
-
 </script>
 </body>
 </html>

@@ -84,33 +84,6 @@
 <script>
 
 
-/*
-  ・もしcontents-navまで、windowがスクロールしたら、contents-navに.fixedを追加する
-  ・上記以外は、.fixedを外す
-
-  ・windowのトップからcontents-navまでの距離を取得したい
-  ・windowの現在の位置
-*/
-
-//変数
-var navPosition = $('.contents-nav').offset().top;
-
-//イベント
-$(window).scroll(function() {
-  navFixed();
-});
-
-//処理
-function navFixed() {
-  var position = $(window).scrollTop();
-
-  if(position > navPosition) {
-    $('.contents-nav').addClass('fixed');
-  } else {
-    $('.contents-nav').removeClass('fixed');
-  }
-}
-
 </script>
 </body>
 </html>
