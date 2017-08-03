@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery クリックした画像に変更してみよう</title>
+</head>
+<style>
+  body,ul,li,p{
+    margin: 0;
+    padding: 0;
+  }
+  li{
+    list-style: none;
+  }
+  h1{
+    color: gray;
+    text-align: center;
+  }
+
+  .contents{
+    color: gray;
+    font-family: sans-serif;
+    margin: 30px auto 0;
+    text-align: center;
+  }
+
+  .contents-main{
+    width: 70%;
+    margin: 0 auto;
+  }
+  .contents-main > img{
+    width: 100%;
+  }
+  .contents-sub{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto 0;
+  }
+  .contents-sub-item{
+    width: 20%;
+    cursor: pointer;
+  }
+  .contents-sub-item > img{
+    width: 100%;
+  }
+  .contents-sub-item + .contents-sub-item{
+    border-left: 1px solid white;
+  }
+</style>
+<body>
+  <h1>クリックした画像に変更してみよう</h1>
+
+  <section class="contents">
+    <div class="contents-main"><img src="img/1.jpg" alt=""></div>
+
+    <ul class="contents-sub">
+      <li class="contents-sub-item"><img src="img/1.jpg" alt=""></li>
+      <li class="contents-sub-item"><img src="img/2.jpg" alt=""></li>
+      <li class="contents-sub-item"><img src="img/3.jpg" alt=""></li>
+      <li class="contents-sub-item"><img src="img/4.jpg" alt=""></li>
+      <li class="contents-sub-item"><img src="img/5.jpg" alt=""></li>
+    </ul>
+  </section>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+// イベント
+$('.contents-sub-item').click(function() {
+  changeImg(this);
+});
+
+// 処理
+function changeImg(elm) {
+  var $this = $(elm);
+  var src = $this.children('img').attr('src');
+
+  $('.contents-main').children('img').attr('src',src);
+}
+</script>
+</body>
+</html>

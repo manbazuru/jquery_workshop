@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery スライドのカルーセルを作ってみよう</title>
+</head>
+<style>
+  body,ul,li,p{
+    margin: 0;
+    padding: 0;
+  }
+  img{
+    vertical-align: bottom;
+  }
+  li{
+    list-style: none;
+  }
+  h1{
+    color: gray;
+    text-align: center;
+  }
+  .notice{
+    width: 640px;
+    margin: 0 auto;
+  }
+  .notice-description{
+    color: #5a5a5a;
+    margin-top: 20px;
+  }
+
+  .carousel{
+    width: 640px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel-img-wrap{
+    width: 500%;
+    overflow: hidden;
+  }
+
+  .carousel-img-item{
+    width: 20%;
+    float: left;
+  }
+
+  .carousel-btn-left,
+  .carousel-btn-right{
+    background-color: rgba(0,0,0,.7);
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .carousel-btn-left{
+    display: none;
+    left: 20px;
+  }
+  .carousel-btn-right{
+    right: 20px;
+  }
+
+  .carousel-btn-left > img,
+  .carousel-btn-right > img{
+    width: 15px;
+    height: 15px;
+    padding: 15px;
+  }
+</style>
+<body>
+  <h1>スライドのカルーセルを作ってみよう</h1>
+
+  <div class="carousel">
+    <ul class="carousel-img-wrap">
+      <li class="carousel-img-item"><img src="img/1.jpg" alt=""></li>
+      <li class="carousel-img-item"><img src="img/2.jpg" alt=""></li>
+      <li class="carousel-img-item"><img src="img/3.jpg" alt=""></li>
+      <li class="carousel-img-item"><img src="img/4.jpg" alt=""></li>
+      <li class="carousel-img-item"><img src="img/5.jpg" alt=""></li>
+    </ul>
+
+    <p class="carousel-btn-left"><img src="img/icon_arrow_left.svg" alt=""></p>
+    <p class="carousel-btn-right"><img src="img/icon_arrow_right.svg" alt=""></p>
+  </div>
+
+  <ul class="notice">
+    <li class="notice-description">一番左の時は、左ボタン非表示にする。一番右の時は、右ボタンを非表示にする</li>
+  </ul>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+console.log('Let\'s Try');
+</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery ページトップへボタンも追加してみよう</title>
+</head>
+<style>
+  body,ul,li,p{
+    margin: 0;
+    padding: 0;
+  }
+  li{
+    list-style: none;
+  }
+  a{
+    text-decoration: none;
+  }
+  h1{
+    color: gray;
+    text-align: center;
+  }
+
+  .contents{
+    color: gray;
+    font-family: sans-serif;
+    margin: 30px auto 0;
+    text-align: center;
+  }
+
+  .contents-mv{
+    width: 100%;
+    height: 300px;
+    background-color: gray;
+    color: white;
+    line-height: 300px;
+  }
+  .contents-nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .contents-nav-item{
+    width: 20%;
+    background-color: lightGray;
+    padding: 15px 0;
+  }
+  .contents-nav-item + .contents-nav-item{
+    border-left: 1px solid white;
+  }
+  .contents-main{
+    height: 2000px;
+    background-color: #eee;
+    line-height: 2500px;
+  }
+  .contents-footer{
+    width: 100%;
+    height: 100px;
+    background-color: gray;
+    color: white;
+    line-height: 100px;
+  }
+
+  .fixed{
+    position: fixed;
+    top: 0; left: 0;
+  }
+
+  .pagetop{
+    width: 30px;
+    height: 30px;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+    display: none;
+    line-height: 30px;
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    text-align: center;
+  }
+</style>
+<body>
+  <h1>ページトップへボタンも追加してみよう</h1>
+
+  <section class="contents">
+    <div class="contents-mv">main visual</div>
+
+    <ul class="contents-nav">
+      <li class="contents-nav-item">nav1</li>
+      <li class="contents-nav-item">nav2</li>
+      <li class="contents-nav-item">nav3</li>
+      <li class="contents-nav-item">nav4</li>
+      <li class="contents-nav-item">nav5</li>
+    </ul>
+
+    <div class="contents-main">contents</div>
+    <div class="contents-footer">footer</div>
+  </section>
+
+  <div><a class="pagetop" href="#">^</a></div>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+// 必要な値を変数に格納
+var $nav = $('.contents-nav');
+var pos = $nav.offset().top;
+
+// イベント
+$(window).scroll(function() {
+  navFixed();
+});
+
+$('.pagetop').on('click',function(e) {
+  pageScroll(e);
+});
+
+
+// 処理
+function navFixed() {
+  var winPos = $(window).scrollTop();
+
+  if(winPos > pos) {
+    $nav.addClass('fixed');
+    // ページトップボタンの表示
+    $('.pagetop').fadeIn();
+  } else {
+    $nav.removeClass('fixed');
+    // ページトップボタンの非表示
+    $('.pagetop').fadeOut();
+  }
+}
+
+function pageScroll(e) {
+  e.preventDefault();
+  $('body,html').animate({scrollTop : 0},400);
+}
+
+</script>
+</body>
+</html>

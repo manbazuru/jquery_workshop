@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery スライドのカルーセルを作ってみよう</title>
+</head>
+<style>
+  body,ul,li,p{
+    margin: 0;
+    padding: 0;
+  }
+  img{
+    vertical-align: bottom;
+  }
+  li{
+    list-style: none;
+  }
+  h1{
+    color: gray;
+    text-align: center;
+  }
+  .notice{
+    width: 640px;
+    margin: 0 auto;
+  }
+  .notice-description{
+    color: #5a5a5a;
+    margin-top: 20px;
+  }
+
+  .carousel{
+    width: 640px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel-img-wrap{
+    width: 500%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel-img-item{
+    width: 20%;
+    float: left;
+  }
+
+  .carousel-btn-left,
+  .carousel-btn-right{
+    background-color: rgba(0,0,0,.7);
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .carousel-btn-left{
+    display: none;
+    left: 20px;
+  }
+  .carousel-btn-right{
+    right: 20px;
+  }
+
+  .carousel-btn-left > img,
+  .carousel-btn-right > img{
+    width: 15px;
+    height: 15px;
+    padding: 15px;
+  }
+</style>
+<body>
+  <h1>スライドのカルーセルを作ってみよう</h1>
+
+  <div class="carousel">
+    <ul class="carousel-img-wrap">
+      <li class="carousel-img-item"><img src="img/1.jpg" alt=""></li>
+      <li class="carousel-img-item"><img src="img/2.jpg" alt=""></li>
+      <li class="carousel-img-item"><img src="img/3.jpg" alt=""></li>
+      <li class="carousel-img-item"><img src="img/4.jpg" alt=""></li>
+      <li class="carousel-img-item"><img src="img/5.jpg" alt=""></li>
+    </ul>
+
+    <p class="carousel-btn-left"><img src="img/icon_arrow_left.svg" alt=""></p>
+    <p class="carousel-btn-right"><img src="img/icon_arrow_right.svg" alt=""></p>
+  </div>
+
+  <ul class="notice">
+    <li class="notice-description">一番左の時は、左ボタン非表示にする。一番右の時は、右ボタンを非表示にする</li>
+  </ul>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+// 変数
+// 位置調整用
+var position = 0;
+// 動かす幅
+var pictureWidth = $('.carousel-img-item').width();
+// 画像の数
+var pictureLength = $('.carousel-img-item').length;
+
+// イベント
+$('.carousel-btn-right').on('click',function() {
+  moveRight();
+});
+
+$('.carousel-btn-left').on('click',function() {
+  moveLeft();
+});
+
+
+// 処理
+function moveRight() {
+  if($('.carousel-img-wrap').is(':animated')) {
+    return false;
+  }
+
+  position += pictureWidth;
+
+  $('.carousel-btn-left').fadeIn();
+
+  if(position >= pictureWidth * (pictureLength - 1)) {
+    $('.carousel-btn-right').fadeOut();
+  }
+
+  $('.carousel-img-wrap').stop().animate({'left' : -position});
+}
+
+function moveLeft() {
+  if($('.carousel-img-wrap').is(':animated')) {
+    return false;
+  }
+
+  position -= pictureWidth;
+
+  $('.carousel-btn-right').fadeIn();
+
+  if(position <= 0) {
+    $('.carousel-btn-left').fadeOut();
+  }
+
+  $('.carousel-img-wrap').stop().animate({'left' : -position});
+}
+
+</script>
+</body>
+</html>
